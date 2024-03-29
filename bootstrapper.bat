@@ -15,22 +15,15 @@ for /f "usebackq skip=1 delims=" %%a in ("%TEMP%\local_hash.txt") do (
 )
 :nextline
 
-:: Download the update file from the URL
-powershell -command "(New-Object System.Net.WebClient).DownloadFile('%UpdateURL%', '%LocalUpdateFile%')"
-
-:: Check if the download was successful
-if not exist "%LocalUpdateFile%" (
-    echo Failed to download the update file.
-    exit /b 1
+:: Calculate hash of downloaded update batch file, if it exists
+if exist "%LocalUpdateFile%" (
+    certutil -hashfile "%LocalUpdateFile%" SHA256 > "%TEMP%\update_hash.txt"
+    for /f "usebackq skip=1 delims=" %%a in ("%TEMP%\update_hash.txt") do (
+        set "update_hash=%%a"
+        goto :nextline2
+    )
+    :nextline2
 )
-
-:: Calculate hash of downloaded update batch file
-certutil -hashfile "%LocalUpdateFile%" SHA256 > "%TEMP%\update_hash.txt"
-for /f "usebackq skip=1 delims=" %%a in ("%TEMP%\update_hash.txt") do (
-    set "update_hash=%%a"
-    goto :nextline2
-)
-:nextline2
 
 :: Compare the hashes
 if "%local_hash%"=="%update_hash%" (
@@ -39,14 +32,13 @@ if "%local_hash%"=="%update_hash%" (
     pause
     exit /b
 ) else (
-    :: Hashes are different, replace the current batch file with the updated version
+    :: Hashes are different or update file doesn't exist, replace the current batch file with the updated version
     echo Updating...
-    copy /y "%LocalUpdateFile%" "%~f0"
+    powershell -command "(New-Object System.Net.WebClient).DownloadFile('%UpdateURL%', '%~f0')"
 )
 
 :: Clean up
 del "%TEMP%\local_hash.txt"
-del "%TEMP%\update_hash.txt"
-del "%LocalUpdateFile%"
+if exist "%TEMP%\update_hash.txt" del "%TEMP%\update_hash.txt"
 
 endlocal

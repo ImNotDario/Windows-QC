@@ -128,7 +128,11 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation" /v Suppo
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation" /v SupportPhone /t REG_SZ /d "0800801046" /f
 md C:\Windows\system32\bootstrap
 copy assets\bootstrapper.bat C:\Windows\system32\bootstrap
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /t REG_SZ /d "cmd.exe /c C:\Windows\system32\bootstrap\bootstrapper.bat" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /t REG_SZ /d "explorer.exe" /f
+set "command_to_run=C:\Windows\system32\bootstrap"
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v LegalNoticeCaption /t REG_SZ /d "This is a windows modification. " /f
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v LegalNoticeText /t REG_SZ /d "Any issues or problems that may happen are from mods. " /f
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Userinit /t REG_SZ /d "%SystemRoot%\system32\userinit.exe,%command_to_run%" /f
 echo Finishing Up
 copy assets\removepostinstall.bat C:\Windows\system32\bootstrap
 echo Removing Post Install Wizard

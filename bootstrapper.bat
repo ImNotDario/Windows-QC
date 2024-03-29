@@ -7,6 +7,14 @@ set "UpdateURL=https://raw.githubusercontent.com/ImNotDario/Windows-QC/main/boot
 :: Set the path for the local update file
 set "LocalUpdateFile=%TEMP%\bootstrapper_update.bat"
 
+:: Calculate hash of local batch file
+certutil -hashfile "%~f0" SHA256 > "%TEMP%\local_hash.txt"
+for /f "usebackq skip=1 delims=" %%a in ("%TEMP%\local_hash.txt") do (
+    set "local_hash=%%a"
+    goto :nextline
+)
+:nextline
+
 :: Download the update file from the URL
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%UpdateURL%', '%LocalUpdateFile%')"
 
@@ -15,14 +23,6 @@ if not exist "%LocalUpdateFile%" (
     echo Failed to download the update file.
     exit /b 1
 )
-
-:: Calculate hash of local batch file
-certutil -hashfile "%~f0" SHA256 > "%TEMP%\local_hash.txt"
-for /f "usebackq skip=1 delims=" %%a in ("%TEMP%\local_hash.txt") do (
-    set "local_hash=%%a"
-    goto :nextline
-)
-:nextline
 
 :: Calculate hash of downloaded update batch file
 certutil -hashfile "%LocalUpdateFile%" SHA256 > "%TEMP%\update_hash.txt"

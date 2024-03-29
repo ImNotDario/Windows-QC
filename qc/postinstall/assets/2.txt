@@ -1,0 +1,6 @@
+Select what bundle you want!
+<1> Gamer: Chrome, 7 Zip, Discord, Steam, VLC, iTunes, All .NET runtimes, All java runtimes, Paint.NET, Notepad++
+<2> Developer: Chrome, 7 Zip, Discord, VLC, qBittorent, All Java And .Net runtimes, All Java Dev Kits, Notepad++, FileZilla, Python3, Python, Visual Studio Code, GIMP, RealVNC Viewer
+<3> Business: Chrome, 7 Zip, Skype, Zoom, VLC, .Net, Notepad++, Java, (OPTIONAL) LibreOffice, (OPTIONAL) Avast, RealVNC Viewer
+<4> Go Back
+-- unused

@@ -1,0 +1,2 @@
+To go back, cd to C:\Windows\PostInstall and run postinstall.cmd
+-- unused

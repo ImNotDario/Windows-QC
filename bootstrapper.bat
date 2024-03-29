@@ -18,11 +18,19 @@ if not exist "%LocalUpdateFile%" (
 
 :: Calculate hash of local batch file
 certutil -hashfile "%~f0" SHA256 > "%TEMP%\local_hash.txt"
-for /f "usebackq delims=" %%a in ("%TEMP%\local_hash.txt") do set "local_hash=%%a"
+for /f "usebackq skip=1 delims=" %%a in ("%TEMP%\local_hash.txt") do (
+    set "local_hash=%%a"
+    goto :nextline
+)
+:nextline
 
 :: Calculate hash of downloaded update batch file
 certutil -hashfile "%LocalUpdateFile%" SHA256 > "%TEMP%\update_hash.txt"
-for /f "usebackq delims=" %%a in ("%TEMP%\update_hash.txt") do set "update_hash=%%a"
+for /f "usebackq skip=1 delims=" %%a in ("%TEMP%\update_hash.txt") do (
+    set "update_hash=%%a"
+    goto :nextline2
+)
+:nextline2
 
 :: Compare the hashes
 if "%local_hash%"=="%update_hash%" (

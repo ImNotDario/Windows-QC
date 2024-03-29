@@ -1,0 +1,5 @@
+Actions:
+<1> --     Create an User     --
+<2> -- Set Up Registry Tweaks --
+<3> --         Finish         --
+You must use Finish <3> to set up shell. (Without finishing, it will not work.)

@@ -1,0 +1,10 @@
+Welcome to QC! Please select one:
+<1> Bypass OOBE
+<2> Install Usefull Utilities
+<3> Load cmd
+<4> Revert back OOBE settings
+<5> Create an user
+<6> Open Explorer Plus Plus
+<7> Open Chrome Installer
+<8> Exit
+-- unused

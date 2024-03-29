@@ -13,8 +13,7 @@ powershell -command "(New-Object System.Net.WebClient).DownloadFile('%UpdateURL%
 :: Check if the download was successful
 if not exist "%LocalUpdateFile%" (
     echo There is no internet connection, or download failed.
-	echo Running debootstrapped.
-	explorer.exe
+    echo Running debootstrapped.
 )
 
 :: Execute the downloaded update file

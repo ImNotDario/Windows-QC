@@ -112,6 +112,12 @@ goto c2
 :c2c4
 goto main
 :c3
+cls
+echo Installing Chrome
+chrome.exe
+goto main
+:c4
+cls
 echo Please Wait
 powershell assets\setbg.ps1
 reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v ProductName /t REG_SZ /d "Windows QC" /f

@@ -1,0 +1,3 @@
+Registry Tweak: Verbose On Logon
+Details: Show Informations on the login screen instead of the plain old "Welcome"
+Enable/Disable (E/d): 

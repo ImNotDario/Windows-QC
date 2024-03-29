@@ -1,0 +1,3 @@
+Registry Tweak: Add Command Prompt to Context Menu
+Details: Add Open In Command promt to context menu when Right Clicking on/inside a folder while holding shift.
+Enable/Disable (E/d): 

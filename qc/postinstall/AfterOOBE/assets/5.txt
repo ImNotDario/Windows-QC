@@ -1,0 +1,3 @@
+Registry Tweak: Old Windows Photo Viewer
+Details: Dont Use Photos App, use Windows Photo Viewer.
+Enable/Disable (E/d): 

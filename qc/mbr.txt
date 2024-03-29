@@ -1,0 +1,13 @@
+list disk
+select disk 0
+clean
+convert mbr
+create part primary size 500
+format quick label Recovery
+assign letter R
+set id 27
+create part primary
+format quick label Windows
+assign letter C
+active
+exit
